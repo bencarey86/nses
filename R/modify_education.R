@@ -11,7 +11,6 @@
                     total_educational_attainment_for_the_population_25_years_and_over *
                     100
         )
-    return(df)
 }
 
 .compute_high_education <- function(df) {
@@ -26,12 +25,10 @@
                     total_educational_attainment_for_the_population_25_years_and_over *
                     100
         )
-    return(df)
 }
 
 .compute_education <- function(df) {
     df <- df |>
         .compute_low_education() |>
         .compute_high_education()
-    return(df)
 }
