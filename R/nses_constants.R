@@ -4,8 +4,6 @@
 #' data required to comput the NSES index.
 #'
 #' @name nses_concepts
-#' @docType variable
-#' @usage nses_concepts
 #' @export
 nses_concepts <- c(
     "Educational attainment" = "^Educational Attainment For The Population 25 Years And Over$",
@@ -15,3 +13,22 @@ nses_concepts <- c(
     "Median housing value" = "^Median Value \\(Dollars\\)$",
     "Occupant density" = "^Tenure By Occupants Per Room$"
 )
+
+#' NSES states
+#'
+#' This is a data frame containing information about the all states in the United States
+#' and Washington, D.C. It is used to filter out territories and other non-state entities.
+#'
+#' @name nses_states
+#' @export
+nses_states <- read.delim("https://www2.census.gov/geo/docs/reference/state.txt", sep = "|") |>
+    janitor::clean_names() |>
+    dplyr::select(
+        "code" = "state",
+        "abbreviation" = "stusab",
+        "name" = "state_name"
+    ) |>
+    dplyr::mutate(
+        "code" = stringr::str_pad(code, 2, pad = "0")
+    ) |>
+    dplyr::filter(!code %in% c("60", "66", "69", "72", "74", "78"))
