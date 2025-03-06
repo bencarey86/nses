@@ -1,2 +1,5 @@
 ^nses\.Rproj$
 ^\.Rproj\.user$
+^LICENSE\.md$
+^\.lintr$
+^playground\.R$
